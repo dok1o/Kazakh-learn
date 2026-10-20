@@ -28,8 +28,11 @@ export and publishes it on every push to `main` (or run it manually from the
 - `next.config.ts` uses `output: "export"` and reads a `BASE_PATH` env var;
   the workflow sets it to `/<repo-name>` so asset URLs work under the
   project-pages sub-path. Locally it stays empty.
-- In the repo's **Settings → Pages**, the source must be **GitHub Actions**
-  (the workflow's `configure-pages` step enables this automatically).
+- **One-time manual step:** in the repo's **Settings → Pages → Build and
+  deployment**, set **Source: GitHub Actions**. (Creating a Pages site needs
+  admin scope that CI/bot tokens don't have.) After that, every push deploys
+  automatically; if a run failed before Pages was enabled, open the
+  **Actions** tab and click **Re-run jobs**.
 - `out/.nojekyll` keeps the `_next/` asset folder servable.
 
 No environment variables are required for the current (local-first) build.
